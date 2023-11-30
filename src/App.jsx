@@ -7,6 +7,8 @@ import Wishlist from "./pages/Wishlist/Wishlist";
 import User from "./pages/User/User";
 import TopNavbar from "./components/TopNavbar/TopNavbar";
 import BottomNavbar from "./components/BottomNavbar/BottomNavbar";
+import SignIn from "./pages/Auth/SignIn/SignIn";
+import SignUp from "./pages/Auth/SignUp/SignUp";
 
 export default function App() {
   return (
@@ -20,6 +22,8 @@ export default function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/user" element={<User />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
       </Routes>
     </div>
   );

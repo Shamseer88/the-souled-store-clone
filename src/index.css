@@ -18,3 +18,12 @@
   --green-color: #117a7a;
   --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+
+a {
+  text-decoration: none;
+}
+h3 {
+  color: var(--grey-heading);
+  font-size: 28px;
+  padding-bottom: 2rem;
+}

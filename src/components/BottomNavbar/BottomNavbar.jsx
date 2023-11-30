@@ -50,7 +50,7 @@ export default function BottomNavbar() {
         </div>
       </div>
       <div className="bottom-navbar-right">
-        <FaUser size={20} color="#58595b" />
+        <FaUser size={20} color="#58595b" className="bottom-navbar-user" />
         <div className="bottom-navbar-wishlist">
           <FaHeart size={20} color="#58595b" />
           <span>0</span>

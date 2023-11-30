@@ -41,9 +41,14 @@
   opacity: 0;
 }
 
+.bottom-navbar-user {
+  cursor: pointer;
+}
+
 .bottom-navbar-wishlist,
 .bottom-navbar-cart {
   position: relative;
+  cursor: pointer;
 }
 .bottom-navbar-wishlist span,
 .bottom-navbar-cart span {

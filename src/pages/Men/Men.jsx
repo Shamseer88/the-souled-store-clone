@@ -1,6 +1,10 @@
 import React from "react";
-import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
+import MenSlide from "../../components/Slides/MenSlide/MenSlide";
 
 export default function Men() {
-  return <div>Men</div>;
+  return (
+    <div>
+      <MenSlide />
+    </div>
+  );
 }

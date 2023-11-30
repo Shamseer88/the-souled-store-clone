@@ -6,3 +6,14 @@
   box-sizing: border-box;
   font-family: "Assistant", sans-serif;
 }
+
+:root {
+  --red-primary: #e11b23;
+  --red-secondary: #ed2d2f;
+  --grey-primary: #58595b;
+  --grey-secondary: #737577;
+  --grey-heading: #282c3f;
+  --grey-background: #9c9b9b;
+  --grey-footer: #e6e7e8;
+  --green-color: #117a7a;
+}

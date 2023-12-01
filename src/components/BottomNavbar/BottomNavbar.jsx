@@ -2,13 +2,8 @@ import "./BottomNavbar.css";
 import { apiUrl, projectId } from "../../helper/apiDetails";
 import { useRef, useState } from "react";
 import { useEffect } from "react";
-import {
-  FaBars,
-  FaHeart,
-  FaShoppingBag,
-  FaTimes,
-  FaUser,
-} from "react-icons/fa";
+import { FaBars, FaHeart, FaShoppingBag, FaTimes } from "react-icons/fa";
+import Profile from "../Profile/Profile";
 
 export default function BottomNavbar() {
   const [categoryList, setCategoryList] = useState([]);
@@ -50,7 +45,7 @@ export default function BottomNavbar() {
         </div>
       </div>
       <div className="bottom-navbar-right">
-        <FaUser size={20} color="#58595b" className="bottom-navbar-user" />
+        <Profile />
         <div className="bottom-navbar-wishlist">
           <FaHeart size={20} color="#58595b" />
           <span>0</span>

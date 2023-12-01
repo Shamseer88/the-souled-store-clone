@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { apiUrl, projectId } from "../../../helper/apiDetails";
-import "../Auth.css";
 import { useUser } from "../../../provider/UserProvider";
+import "../Auth.css";
 
 export default function SignUp() {
   const { signInContext } = useUser();
@@ -55,6 +55,8 @@ export default function SignUp() {
 
         // Navigate to home
         navigate("/");
+      } else {
+        console.error("Sign up failed");
       }
     } catch (error) {
       console.log(error);

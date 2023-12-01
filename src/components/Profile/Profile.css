@@ -1,0 +1,35 @@
+.profile-div {
+  display: flex;
+}
+.profile-name {
+  color: var(--green-color);
+}
+.auth-modal {
+  padding: 1rem;
+  margin: 0.25rem;
+  width: 10rem;
+  background-color: #f1f1f2;
+  position: absolute;
+  top: 125px;
+  z-index: 999;
+  border-radius: 0.25rem;
+  /* background-color: #393939; */
+  border: 1px solid #b9b9b9;
+}
+
+.auth-modal button {
+  width: 100%;
+  border: 0;
+  background-color: var(--red-secondary);
+  color: #fff;
+  padding: 5px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 520px) {
+  .auth-modal {
+    right: 0px;
+  }
+}

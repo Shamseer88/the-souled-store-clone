@@ -1,0 +1,17 @@
+.product-container {
+  display: grid;
+  grid-template-columns: 1fr 3.5fr;
+  width: 90%;
+  margin: auto;
+  gap: 1rem;
+}
+
+.product-container-left {
+  background-color: aqua;
+}
+
+@media only screen and (max-width: 525px) {
+  .product-container {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,23 @@
+.pagination {
+  margin: 3rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pagination button {
+  padding: 0.5rem 2rem;
+  border: none;
+  background-color: var(--green-color);
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.pagination-goto-page input {
+  border: 1px solid var(--green-color);
+  outline: none;
+  padding: 0.45rem;
+}

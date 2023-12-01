@@ -26,4 +26,5 @@ h3 {
   color: var(--grey-heading);
   font-size: 28px;
   padding-bottom: 2rem;
+  text-align: center;
 }

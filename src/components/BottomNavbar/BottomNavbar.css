@@ -7,6 +7,10 @@
   justify-content: space-around;
   font-family: "Nunito Sans", sans-serif;
   margin-bottom: 5px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 5;
 }
 
 .bottom-navbar-left-menu ul {

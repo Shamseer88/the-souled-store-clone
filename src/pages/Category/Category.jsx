@@ -1,30 +1,21 @@
 import React, { useEffect, useState } from "react";
-import MenSlide from "../../components/Slides/MenSlide/MenSlide";
-import { apiUrl, projectId } from "../../helper/apiDetails";
-import NewArrival from "../../components/NewArrival/NewArrival";
+import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import ProductContainer from "../../components/ProductContainer/ProductContainer";
 import Pagination from "../../components/Pagination/Pagination";
-import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
+import { apiUrl, projectId } from "../../helper/apiDetails";
 
-export default function Men() {
+export default function Category() {
+  const { category } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [newArrivalProducts, setNewArrivalProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [goToPage, setGoToPage] = useState(0);
-  // const [subCategory, setSubCategory] = useState("");
-
-  const handleCategory = (category) => {
-    setSubCategory(category);
-    setCurrentPage(1);
-  };
-
-  const getProducts = async () => {
+  const getProductsByCategory = async () => {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `${apiUrl}ecommerce/clothes/products?filter={%22gender%22%3A%22Men%22}&page=${currentPage}`,
+        `${apiUrl}ecommerce/clothes/products?filter={%22subCategory%22%3A%22${category}%22%2C%20%22gender%22%3A%22Men%22}&page=${currentPage}`,
         {
           headers: {
             projectId: projectId,
@@ -40,27 +31,6 @@ export default function Men() {
       setIsLoading(false);
     }
   };
-
-  const getNewArrivalProducts = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(
-        `${apiUrl}ecommerce/clothes/products?filter={%22sellerTag%22%3A%22new%20arrival%22%2C%20%22gender%22%3A%22Men%22}&limit=20`,
-        {
-          headers: {
-            projectId: projectId,
-          },
-        }
-      );
-      const jsonData = await response.json();
-      setIsLoading(false);
-      setNewArrivalProducts(jsonData.data);
-      console.log(newArrivalProducts);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   // Pagination Starts
   const handleNext = () => {
     if (products.length < 20) {
@@ -88,25 +58,12 @@ export default function Men() {
   };
 
   // Pagination Ends
-
   useEffect(() => {
-    getNewArrivalProducts();
-  }, []);
-
-  useEffect(() => {
-    getProducts();
+    getProductsByCategory();
   }, [currentPage]);
 
   return (
     <div>
-      <BottomNavbar handleCategory={handleCategory} />
-      <MenSlide />
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <NewArrival newArrivalProducts={newArrivalProducts} />
-      )}
-      <h3>ALL PRODUCTS</h3>
       {isLoading ? (
         <Loader />
       ) : (

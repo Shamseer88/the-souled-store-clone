@@ -6,18 +6,19 @@ import Cart from "./pages/Cart/Cart";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import User from "./pages/User/User";
 import TopNavbar from "./components/TopNavbar/TopNavbar";
-import BottomNavbar from "./components/BottomNavbar/BottomNavbar";
 import SignIn from "./pages/Auth/SignIn/SignIn";
 import SignUp from "./pages/Auth/SignUp/SignUp";
+import Category from "./pages/Category/Category";
 
 export default function App() {
   return (
     <div>
       <TopNavbar />
-      <BottomNavbar />
+
       <Routes>
         <Route path="/" element={<Men />} />
         <Route path="/men" element={<Men />} />
+        <Route path="/men/:category" element={<Category />} />
         <Route path="/women" element={<Women />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />

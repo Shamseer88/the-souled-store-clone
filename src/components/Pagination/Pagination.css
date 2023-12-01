@@ -1,6 +1,7 @@
 .pagination {
   margin: 3rem auto;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 1rem;
@@ -20,4 +21,8 @@
   border: 1px solid var(--green-color);
   outline: none;
   padding: 0.45rem;
+}
+
+.pagination-go-btn {
+  background-color: var(--grey-primary) !important;
 }

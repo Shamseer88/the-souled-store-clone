@@ -4,8 +4,9 @@ import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { FaBars, FaHeart, FaShoppingBag, FaTimes } from "react-icons/fa";
 import Profile from "../Profile/Profile";
+import { NavLink } from "react-router-dom";
 
-export default function BottomNavbar() {
+export default function BottomNavbar({ handleCategory }) {
   const [categoryList, setCategoryList] = useState([]);
   const navRef = useRef();
   const showNavbar = () => {
@@ -30,7 +31,17 @@ export default function BottomNavbar() {
         <div className="bottom-navbar-left-menu">
           <ul ref={navRef}>
             {categoryList.map((category) => (
-              <li key={category}>{category}</li>
+              <li key={category}>
+                <NavLink
+                  to={`/men/${category}`}
+                  onClick={() => {
+                    handleCategory(category);
+                    showNavbar();
+                  }}
+                >
+                  {category}
+                </NavLink>
+              </li>
             ))}
             <button
               onClick={showNavbar}

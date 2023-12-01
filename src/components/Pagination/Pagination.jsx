@@ -17,7 +17,11 @@ export default function Pagination({
       <div className="pagination-goto-page">
         <form onSubmit={handleSubmit}>
           <input type="text" onChange={handleGoChange} value={goToPageValue} />
-          <button onClick={handleGoClick} type="submit">
+          <button
+            onClick={handleGoClick}
+            type="submit"
+            className="pagination-go-btn"
+          >
             GO
           </button>
         </form>

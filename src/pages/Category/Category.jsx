@@ -4,6 +4,7 @@ import Loader from "../../components/Loader/Loader";
 import ProductContainer from "../../components/ProductContainer/ProductContainer";
 import Pagination from "../../components/Pagination/Pagination";
 import { apiUrl, projectId } from "../../helper/apiDetails";
+import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
 
 export default function Category() {
   const { category } = useParams();
@@ -11,6 +12,14 @@ export default function Category() {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [goToPage, setGoToPage] = useState(0);
+
+  const [subCategory, setSubCategory] = useState("");
+
+  const handleCategory = (category) => {
+    setSubCategory(category);
+    setCurrentPage(1);
+  };
+
   const getProductsByCategory = async () => {
     try {
       setIsLoading(true);
@@ -60,7 +69,7 @@ export default function Category() {
   // Pagination Ends
   useEffect(() => {
     getProductsByCategory();
-  }, [currentPage]);
+  }, [currentPage, category]);
 
   return (
     <div>
@@ -68,6 +77,7 @@ export default function Category() {
         <Loader />
       ) : (
         <>
+          <BottomNavbar handleCategory={handleCategory} />
           <ProductContainer products={products} />
           <Pagination
             currentPage={currentPage}

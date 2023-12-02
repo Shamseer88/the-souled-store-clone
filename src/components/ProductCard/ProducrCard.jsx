@@ -6,7 +6,7 @@ export default function ProducrCard({ product }) {
   const { _id, name, brand, displayImage, price } = product;
   return (
     <>
-      <NavLink>
+      <NavLink to={`/single-product/${_id}`}>
         <div className="product-card">
           <div className="product-image-div">
             <img

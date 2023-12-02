@@ -13,7 +13,7 @@ export default function Men() {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [goToPage, setGoToPage] = useState(0);
-  // const [subCategory, setSubCategory] = useState("");
+  const [subCategory, setSubCategory] = useState("");
 
   const handleCategory = (category) => {
     setSubCategory(category);

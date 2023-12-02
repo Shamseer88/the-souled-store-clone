@@ -5,6 +5,7 @@ import { apiUrl, projectId } from "../../helper/apiDetails";
 import Loader from "../../components/Loader/Loader";
 import ProductContainer from "../../components/ProductContainer/ProductContainer";
 import Pagination from "../../components/Pagination/Pagination";
+import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
 
 export default function Women() {
   const [isLoading, setIsLoading] = useState(false);
@@ -88,6 +89,7 @@ export default function Women() {
   }, []);
   return (
     <div>
+      <BottomNavbar />
       <WomenSlide />
       {isLoading ? (
         <Loader />

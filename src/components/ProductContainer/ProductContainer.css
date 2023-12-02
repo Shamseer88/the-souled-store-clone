@@ -2,13 +2,13 @@
   display: grid;
   grid-template-columns: 1fr 3.25fr;
   width: 90%;
-  margin: auto;
+  margin: 4rem auto;
   gap: 1rem;
 }
 
-.product-container-left {
+/* .product-container-left {
   background-color: aqua;
-}
+} */
 
 @media only screen and (max-width: 525px) {
   .product-container {

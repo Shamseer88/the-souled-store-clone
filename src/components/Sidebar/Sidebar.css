@@ -1,5 +1,35 @@
 .sidebar {
   position: -webkit-sticky;
   position: sticky;
-  top: 70px;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 2rem;
+}
+
+.brand-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.brand-buttons button {
+  background-color: transparent;
+  border: none;
+  border: 1px solid black;
+  padding: 0 10px;
+  outline: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.sidebar-sorting {
+  margin-top: 1rem;
+}
+
+.sidebar-sorting h4 {
+  margin-bottom: 0.5rem;
 }

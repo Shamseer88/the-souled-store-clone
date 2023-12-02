@@ -9,6 +9,7 @@ import TopNavbar from "./components/TopNavbar/TopNavbar";
 import SignIn from "./pages/Auth/SignIn/SignIn";
 import SignUp from "./pages/Auth/SignUp/SignUp";
 import Category from "./pages/Category/Category";
+import SingleProduct from "./pages/SingleProduct/SingleProduct";
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/user" element={<User />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/single-product/:id" element={<SingleProduct />} />
       </Routes>
     </div>
   );

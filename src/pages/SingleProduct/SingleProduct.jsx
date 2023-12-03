@@ -4,6 +4,8 @@ import { projectId, apiUrl } from "../../helper/apiDetails";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
+import Stars from "../../components/Stars/Stars";
+import AddToCart from "../../components/AddToCart/AddToCart";
 
 export default function SingleProduct() {
   const [product, setProduct] = useState([]);
@@ -29,8 +31,8 @@ export default function SingleProduct() {
     brand,
     subCategory,
     price,
-    size = [""],
     description,
+    ratings,
   } = product;
   return (
     <>
@@ -55,21 +57,16 @@ export default function SingleProduct() {
             <h2>
               {name} : {brand}
             </h2>
-            <p>{subCategory}</p>
+            <Stars stars={ratings} />
+            <p>Category : {subCategory}</p>
           </div>
-          <hr />
+
           <div className="single-product-price">
             <h2>₹ {price}</h2>
           </div>
-          <div className="single-product-size">
-            <p>Please select a size:</p>
-            <div className="single-product-size-btns">
-              {size.map((size, index) => (
-                <button key={index}>{size}</button>
-              ))}
-            </div>
-          </div>
-          {/* <AddToCart product={singleProduct} /> */}
+          <hr />
+
+          <AddToCart product={product} />
           <div className="cart-wishlist-btns">
             <button className="single-product-add-to-wishlist-btn">
               <FaRegHeart size={12} />

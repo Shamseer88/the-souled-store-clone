@@ -17,7 +17,6 @@ export default function Sidebar() {
     const data = await response.json();
     const allBrands = data.data.map((item) => item.brand);
     setBrands(allBrands);
-    console.log("Brands", brands);
   };
 
   let uniqueBrands = brands.reduce((acc, curr) => {
@@ -26,7 +25,6 @@ export default function Sidebar() {
     }
     return acc;
   }, []);
-  console.log(uniqueBrands);
 
   useEffect(() => {
     getBrands();

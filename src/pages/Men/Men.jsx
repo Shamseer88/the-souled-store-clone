@@ -24,7 +24,7 @@ export default function Men() {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `${apiUrl}ecommerce/clothes/products?filter={%22gender%22%3A%22Men%22}&page=${currentPage}`,
+        `${apiUrl}ecommerce/clothes/products?filter={"gender":"Men"}&page=${currentPage}`,
         {
           headers: {
             projectId: projectId,
@@ -45,7 +45,7 @@ export default function Men() {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `${apiUrl}ecommerce/clothes/products?filter={%22sellerTag%22%3A%22new%20arrival%22%2C%20%22gender%22%3A%22Men%22}&limit=20`,
+        `${apiUrl}ecommerce/clothes/products?filter={"sellerTag":"new arrival","gender":"Men"}&limit=20`,
         {
           headers: {
             projectId: projectId,

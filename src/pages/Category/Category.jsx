@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import ProductContainer from "../../components/ProductContainer/ProductContainer";
 import Pagination from "../../components/Pagination/Pagination";
@@ -15,6 +15,9 @@ export default function Category() {
 
   const [subCategory, setSubCategory] = useState("");
 
+  const currUrl = useLocation().pathname;
+  console.log("currUrl", currUrl);
+
   const handleCategory = (category) => {
     setSubCategory(category);
     setCurrentPage(1);
@@ -24,7 +27,7 @@ export default function Category() {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `${apiUrl}ecommerce/clothes/products?filter={%22subCategory%22%3A%22${category}%22%2C%20%22gender%22%3A%22Men%22}&page=${currentPage}`,
+        `${apiUrl}ecommerce/clothes/products?filter={"subCategory":"${category}","gender":"Men"}&page=${currentPage}`,
         {
           headers: {
             projectId: projectId,

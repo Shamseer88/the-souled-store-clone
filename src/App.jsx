@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Men from "./pages/Men/Men";
 import Women from "./pages/Women/Women";
 import Cart from "./pages/Cart/Cart";
@@ -12,6 +12,7 @@ import Category from "./pages/Category/Category";
 import SingleProduct from "./pages/SingleProduct/SingleProduct";
 
 export default function App() {
+  const currentUrl = useLocation();
   return (
     <div>
       <TopNavbar />
@@ -19,7 +20,10 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Men />} />
         <Route path="/men" element={<Men />} />
-        <Route path="/men/:category" element={<Category />} />
+        <Route
+          path={`${currentUrl.pathname}/:category`}
+          element={<Category />}
+        />
         <Route path="/women" element={<Women />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />

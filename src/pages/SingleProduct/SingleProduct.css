@@ -3,7 +3,9 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 4rem;
-  margin-top: 3rem;
+  max-width: 1000px;
+  width: 95%;
+  margin: 3rem auto;
 }
 
 .single-product-left {

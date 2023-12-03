@@ -1,0 +1,8 @@
+.add-to-cart {
+  margin-bottom: 1rem;
+}
+
+.single-product-size-btns .selected-size-btn {
+  background-color: var(--green-color);
+  color: white;
+}

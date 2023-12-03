@@ -4,9 +4,10 @@ import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { FaBars, FaHeart, FaShoppingBag, FaTimes } from "react-icons/fa";
 import Profile from "../Profile/Profile";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 export default function BottomNavbar({ handleCategory }) {
+  const currentLocation = useLocation();
   const [categoryList, setCategoryList] = useState([]);
   const navRef = useRef();
   const showNavbar = () => {
@@ -20,7 +21,7 @@ export default function BottomNavbar({ handleCategory }) {
     });
     const jsonData = await response.json();
     setCategoryList(jsonData.data);
-    console.log(categoryList);
+    // console.log(categoryList);
   };
   useEffect(() => {
     getCategoryList();
@@ -33,7 +34,7 @@ export default function BottomNavbar({ handleCategory }) {
             {categoryList.map((category) => (
               <li key={category}>
                 <NavLink
-                  to={`/men/${category}`}
+                  to={`${currentLocation.pathname}/${category}`}
                   onClick={() => {
                     handleCategory(category);
                     showNavbar();

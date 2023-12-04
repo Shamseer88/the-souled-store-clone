@@ -46,7 +46,9 @@ export default function SignIn() {
         } = data;
 
         sessionStorage.setItem("authToken", token);
+        localStorage.setItem("authToken", token);
         sessionStorage.setItem("userInfo", JSON.stringify(name));
+        localStorage.setItem("userInfo", JSON.stringify(name));
 
         // pass user data to the context
         signInContext(token);

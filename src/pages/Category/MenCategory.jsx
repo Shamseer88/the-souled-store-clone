@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
-import ProductContainer from "../../components/ProductContainer/ProductContainer";
+
 import Pagination from "../../components/Pagination/Pagination";
 import { apiUrl, projectId } from "../../helper/apiDetails";
 import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
+import ProductContainer from "../../components/ProductContainer/ProductContainer";
 
-export default function Category() {
+export default function MenCategory() {
   const { category } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
@@ -15,12 +16,30 @@ export default function Category() {
 
   const [subCategory, setSubCategory] = useState("");
 
-  const currUrl = useLocation().pathname;
-  console.log("currUrl", currUrl);
-
   const handleCategory = (category) => {
     setSubCategory(category);
     setCurrentPage(1);
+  };
+
+  const getProductByBrand = async (brand) => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(
+        `${apiUrl}ecommerce/clothes/products?filter={"brand":"${brand}",subCategory":"${category}","gender":"Men"}&page=${currentPage}`,
+        {
+          headers: {
+            projectId: projectId,
+          },
+        }
+      );
+      const jsonData = await response.json();
+      setProducts(jsonData.data);
+      console.log("Products-", products);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const getProductsByCategory = async () => {
@@ -43,6 +62,7 @@ export default function Category() {
       setIsLoading(false);
     }
   };
+
   // Pagination Starts
   const handleNext = () => {
     if (products.length < 20) {
@@ -81,7 +101,10 @@ export default function Category() {
       ) : (
         <>
           <BottomNavbar handleCategory={handleCategory} />
-          <ProductContainer products={products} />
+          <ProductContainer
+            products={products}
+            getProductByBrand={getProductByBrand}
+          />
           <Pagination
             currentPage={currentPage}
             handleNext={handleNext}

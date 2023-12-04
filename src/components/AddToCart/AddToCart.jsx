@@ -32,13 +32,14 @@ export default function AddToCart({ product }) {
               {selectedSize === siz ? <FaCheck /> : siz}
             </button>
           ))}
-          <span>Selected size : {selectedSize}</span>
+          {selectedSize && <span>Selected size : {selectedSize}</span>}
         </div>
       </div>
       <CartAmountToggle
         amount={amount}
         setDecrease={setDecrease}
         setIncrease={setIncrease}
+        product={product}
       />
     </>
   );

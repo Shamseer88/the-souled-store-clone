@@ -32,6 +32,7 @@
   font-size: 1.75rem;
   font-weight: 700;
   color: var(--grey-primary);
+  max-width: 500px;
 }
 .single-product-name p {
   font-size: 15px;
@@ -162,4 +163,8 @@ hr {
   max-width: 1000px;
   margin: auto;
   gap: 3rem;
+}
+
+.single-product-description {
+  max-width: 500px;
 }

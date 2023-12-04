@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 export default function Profile() {
   const navigate = useNavigate();
   const { signInContext, isUserLoggedIn } = useUser();
-  let loginUserName = sessionStorage.getItem("userInfo");
+  // let loginUserName = localStorage.getItem("userInfo");
+  const loginUserName = JSON.parse(localStorage.getItem("userInfo")) || "";
 
   const formatUserName = (userName) => {
     const sanitizedUserName = userName.replace(/^"|"$/g, "");
@@ -19,6 +20,10 @@ export default function Profile() {
   const [showModal, setShowModal] = useState(false);
 
   const handleSignOut = () => {
+    sessionStorage.removeItem("authToken");
+    sessionStorage.removeItem("userInfo");
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userInfo");
     signInContext();
     navigate("/sign-in");
   };

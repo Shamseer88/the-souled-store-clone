@@ -7,6 +7,9 @@
   gap: 1rem;
   padding: 0 2rem;
 }
+.sidebar h4 {
+  margin-bottom: -0.5rem;
+}
 
 .brand-buttons {
   display: flex;
@@ -31,5 +34,5 @@
 }
 
 .sidebar-sorting h4 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }

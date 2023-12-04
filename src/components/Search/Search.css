@@ -1,0 +1,13 @@
+.serach-bar input {
+  outline: none;
+}
+
+.search-button {
+  background-color: var(--green-color);
+  color: white;
+  border: none;
+  outline: none;
+  padding: 3px 10px;
+  cursor: pointer;
+  margin-top: 1px;
+}

@@ -77,7 +77,7 @@ export default function SingleProduct() {
             <h3 className="single-product-description-heading">
               Product Details:
             </h3>
-            <p style={{ maxWidth: "600px" }}>{description}</p>
+            <p className="single-product-description">{description}</p>
           </div>
         </div>
       </div>

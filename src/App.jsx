@@ -8,11 +8,13 @@ import User from "./pages/User/User";
 import TopNavbar from "./components/TopNavbar/TopNavbar";
 import SignIn from "./pages/Auth/SignIn/SignIn";
 import SignUp from "./pages/Auth/SignUp/SignUp";
-import Category from "./pages/Category/Category";
 import SingleProduct from "./pages/SingleProduct/SingleProduct";
+import MenCategory from "./pages/Category/MenCategory";
+import WomenCategory from "./pages/Category/WomenCategory";
 
 export default function App() {
   const currentUrl = useLocation();
+  console.log("currentURL", currentUrl.pathname);
   return (
     <div>
       <TopNavbar />
@@ -20,11 +22,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Men />} />
         <Route path="/men" element={<Men />} />
-        <Route
-          path={`${currentUrl.pathname}/:category`}
-          element={<Category />}
-        />
+        <Route path="/men/:category" element={<MenCategory />} />
         <Route path="/women" element={<Women />} />
+        <Route path="/women/:category" element={<WomenCategory />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/user" element={<User />} />

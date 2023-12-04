@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { projectId, apiUrl } from "../../helper/apiDetails";
 import "./Sidebar.css";
 import Sorting from "../Sorting/Sorting";
+import Search from "../Search/Search";
 
-export default function Sidebar() {
+export default function Sidebar({ getProductByBrand }) {
   const [brands, setBrands] = useState([]);
   const getBrands = async () => {
     const response = await fetch(
@@ -31,10 +32,14 @@ export default function Sidebar() {
   }, []);
   return (
     <div className="sidebar">
+      <h4>Search</h4>
+      <Search />
       <h4>Brands</h4>
       <div className="brand-buttons">
         {uniqueBrands.map((brand, index) => (
-          <button key={index}>{brand}</button>
+          <button key={index} onClick={() => getProductByBrand(brand)}>
+            {brand}
+          </button>
         ))}
       </div>
       <div className="sidebar-sorting">

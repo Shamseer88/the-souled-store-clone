@@ -1,13 +1,22 @@
-import "./BottomNavbar.css";
 import { apiUrl, projectId } from "../../helper/apiDetails";
 import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { FaBars, FaHeart, FaShoppingBag, FaTimes } from "react-icons/fa";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useUser } from "../../provider/UserProvider";
+
 import Profile from "../Profile/Profile";
-import { NavLink, useLocation } from "react-router-dom";
+import "./BottomNavbar.css";
 
 export default function BottomNavbar({ handleCategory }) {
-  const currentLocation = useLocation();
+  const { isUserLoggedIn } = useUser();
+
+  const navigate = useNavigate("");
+  const currentLocation = useLocation().pathname;
+  console.log("currentLocation", currentLocation);
+
+  const currentGender = "/" + currentLocation.split("/")[1];
+
   const [categoryList, setCategoryList] = useState([]);
   const navRef = useRef();
   const showNavbar = () => {
@@ -21,11 +30,11 @@ export default function BottomNavbar({ handleCategory }) {
     });
     const jsonData = await response.json();
     setCategoryList(jsonData.data);
-    // console.log(categoryList);
   };
   useEffect(() => {
     getCategoryList();
   }, []);
+  console.log("currentGender", currentGender);
   return (
     <div className="bottom-navbar">
       <div className="bottom-navbar-left">
@@ -34,7 +43,7 @@ export default function BottomNavbar({ handleCategory }) {
             {categoryList.map((category) => (
               <li key={category}>
                 <NavLink
-                  to={`${currentLocation.pathname}/${category}`}
+                  to={`${currentGender}/${category}`}
                   onClick={() => {
                     handleCategory(category);
                     showNavbar();
@@ -62,10 +71,12 @@ export default function BottomNavbar({ handleCategory }) {
           <FaHeart size={20} color="#58595b" />
           <span>0</span>
         </div>
-        <div className="bottom-navbar-cart">
-          <FaShoppingBag size={20} color="#58595b" />
-          <span>0</span>
-        </div>
+        <NavLink to={isUserLoggedIn ? "/cart" : "/sign-in"}>
+          <div className="bottom-navbar-cart">
+            <FaShoppingBag size={20} color="#58595b" />
+            <span>0</span>
+          </div>
+        </NavLink>
       </div>
     </div>
   );

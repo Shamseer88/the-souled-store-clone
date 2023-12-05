@@ -1,0 +1,92 @@
+.wish-list-div {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+.wishlist-h3 {
+  margin-top: 3rem;
+}
+
+.wishlist-card {
+  width: 200px;
+  border: 1px solid lightgray;
+}
+
+.wishlist-card img {
+  width: 100%;
+}
+
+.wishlist-item-info {
+  height: 60px;
+  padding: 0 5px;
+}
+.wishlist-item-info p {
+  font-size: 13px;
+  color: var(--grey-primary);
+}
+
+.wishlist-item-info h5 {
+  color: var(--grey-primary);
+}
+
+.wishlist-buttons-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+  gap: 0.5rem;
+}
+
+.wishlist-buttons-div button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 5px;
+  transition: all ease 0.3s;
+}
+
+.wishlist-cart {
+  background-color: var(--green-color);
+  text-align: center;
+  color: #fff;
+}
+.wishlist-cart:hover {
+  background-color: var(--grey-primary);
+}
+
+.wishlist-delete {
+  color: var(--red-primary);
+  background: transparent;
+}
+.wishlist-delete:hover {
+  color: var(--red-secondary);
+}
+
+.wishlist-clear-button {
+  display: flex;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.wishlist-clear-button button {
+  background-color: var(--red-secondary);
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1.5rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all ease 0.3s;
+}
+
+.wishlist-clear-button button:hover {
+  background-color: var(--red-primary);
+}

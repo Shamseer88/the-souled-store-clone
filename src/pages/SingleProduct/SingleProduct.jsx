@@ -3,11 +3,16 @@ import { FaRegHeart } from "react-icons/fa";
 import { projectId, apiUrl } from "../../helper/apiDetails";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useCartContext } from "../../provider/CartProvider";
 import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
 import Stars from "../../components/Stars/Stars";
 import AddToCart from "../../components/AddToCart/AddToCart";
+import { useWishList } from "../../provider/WishListProvider";
 
 export default function SingleProduct() {
+  const { cartData, addToCart } = useCartContext();
+  const { addToWishList, wishList } = useWishList();
+  // console.log("wishList", wishList);
   const [product, setProduct] = useState([]);
   const [mainImage, setMainImage] = useState(0);
   const { id } = useParams();
@@ -26,6 +31,7 @@ export default function SingleProduct() {
     getProduct();
   }, []);
   const {
+    _id,
     images = [""],
     name,
     brand,
@@ -68,7 +74,10 @@ export default function SingleProduct() {
 
           <AddToCart product={product} />
           <div className="cart-wishlist-btns">
-            <button className="single-product-add-to-wishlist-btn">
+            <button
+              className="single-product-add-to-wishlist-btn"
+              onClick={() => addToWishList(_id)}
+            >
               <FaRegHeart size={12} />
               &nbsp;Add to wishlist
             </button>

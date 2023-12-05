@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { projectId, apiUrl } from "../helper/apiDetails";
+import { toast } from "react-toastify";
 
 const CartContext = createContext();
 
@@ -26,9 +27,9 @@ const CartProvider = ({ children }) => {
   };
 
   // Add data to cart
-  const addToCart = async (productId) => {
+  const addToCart = async (productId, quantity, size) => {
     try {
-      const response = await fetch(`${apiUrl}ecommerce/cart`, {
+      const response = await fetch(`${apiUrl}ecommerce/cart/${productId}`, {
         method: "PATCH",
         headers: {
           projectID: projectId,
@@ -36,11 +37,15 @@ const CartProvider = ({ children }) => {
           Authorization: `Bearer ${authToken}`,
         },
         body: JSON.stringify({
-          productId: productId,
+          quantity: quantity,
+          size: size,
         }),
       });
       const updatedCartData = await response.json();
       setCartData(updatedCartData);
+      if (response.ok) {
+        return toast("Added to cart");
+      }
       console.log("Updated cart", updatedCartData);
     } catch (error) {
       console.log("Error adding product into cart", error);

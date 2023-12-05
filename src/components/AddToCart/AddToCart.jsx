@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import "./AddToCart.css";
 import CartAmountToggle from "../CartAmountToggle/CartAmountToggle";
+import { useCartContext } from "../../provider/CartProvider";
 
 export default function AddToCart({ product }) {
-  const { size = [""] } = product;
+  const { addToCart } = useCartContext();
+
+  const { size = [""], _id } = product;
   const [selectedSize, setSelectedSize] = useState(size[0]);
   const [amount, setAmount] = useState(1);
 
@@ -14,6 +17,10 @@ export default function AddToCart({ product }) {
 
   const setIncrease = () => {
     setAmount(amount + 1);
+  };
+
+  const handleAddToCartClick = () => {
+    addToCart(_id, amount, size);
   };
 
   return (
@@ -40,6 +47,7 @@ export default function AddToCart({ product }) {
         setDecrease={setDecrease}
         setIncrease={setIncrease}
         product={product}
+        handleAddToCartClick={handleAddToCartClick}
       />
     </>
   );

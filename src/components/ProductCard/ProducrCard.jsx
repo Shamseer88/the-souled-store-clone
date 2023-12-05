@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
-import { BsSuitHeart } from "react-icons/bs";
+import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
 import "./ProductCard.css";
+import { useState } from "react";
 
 export default function ProducrCard({ product }) {
   const { _id, name, brand, displayImage, price } = product;
@@ -15,9 +16,13 @@ export default function ProducrCard({ product }) {
               width="100%"
               className="product-image"
             />
-            <div className="heart-icon">
-              <BsSuitHeart />
-            </div>
+            {/* <div className="heart-icon" onClick={() => handleWishListIcon(_id)}>
+              {productId ? (
+                <BsSuitHeart color="#e11b23" />
+              ) : (
+                <BsSuitHeartFill color="#e11b23" />
+              )}
+            </div> */}
           </div>
 
           <div className="product-brand-div">

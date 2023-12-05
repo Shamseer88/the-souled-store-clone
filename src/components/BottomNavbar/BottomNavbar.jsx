@@ -7,11 +7,13 @@ import { useUser } from "../../provider/UserProvider";
 
 import Profile from "../Profile/Profile";
 import "./BottomNavbar.css";
+import { useWishList } from "../../provider/WishListProvider";
 
 export default function BottomNavbar({ handleCategory }) {
   const { isUserLoggedIn } = useUser();
+  const { wishListNumber } = useWishList();
 
-  const navigate = useNavigate("");
+  const navigate = useNavigate();
   const currentLocation = useLocation().pathname;
   console.log("currentLocation", currentLocation);
 
@@ -33,7 +35,7 @@ export default function BottomNavbar({ handleCategory }) {
   };
   useEffect(() => {
     getCategoryList();
-  }, []);
+  }, [wishListNumber]);
   console.log("currentGender", currentGender);
   return (
     <div className="bottom-navbar">
@@ -67,10 +69,12 @@ export default function BottomNavbar({ handleCategory }) {
       </div>
       <div className="bottom-navbar-right">
         <Profile />
-        <div className="bottom-navbar-wishlist">
-          <FaHeart size={20} color="#58595b" />
-          <span>0</span>
-        </div>
+        <NavLink to={isUserLoggedIn ? "/wishlist" : "/sign-in"}>
+          <div className="bottom-navbar-wishlist">
+            <FaHeart size={20} color="#58595b" />
+            <span>{wishListNumber}</span>
+          </div>
+        </NavLink>
         <NavLink to={isUserLoggedIn ? "/cart" : "/sign-in"}>
           <div className="bottom-navbar-cart">
             <FaShoppingBag size={20} color="#58595b" />

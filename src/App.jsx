@@ -11,6 +11,8 @@ import SignUp from "./pages/Auth/SignUp/SignUp";
 import SingleProduct from "./pages/SingleProduct/SingleProduct";
 import MenCategory from "./pages/Category/MenCategory";
 import WomenCategory from "./pages/Category/WomenCategory";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
   const currentUrl = useLocation();
@@ -18,6 +20,8 @@ export default function App() {
   return (
     <div>
       <TopNavbar />
+
+      <ToastContainer />
 
       <Routes>
         <Route path="/" element={<Men />} />

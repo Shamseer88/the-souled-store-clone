@@ -130,11 +130,11 @@ export default function Men() {
     <div>
       <BottomNavbar handleCategory={handleCategory} />
       <MenSlide />
-      {/* {isLoading ? (
+      {isLoading ? (
         <Loader />
       ) : (
         <NewArrival newArrivalProducts={newArrivalProducts} />
-      )} */}
+      )}
       <h3>ALL PRODUCTS</h3>(
       <>
         {!products ? (

@@ -20,7 +20,7 @@ export default function AddToCart({ product }) {
   };
 
   const handleAddToCartClick = () => {
-    addToCart(_id, amount, size);
+    addToCart(_id, amount, selectedSize);
   };
 
   return (

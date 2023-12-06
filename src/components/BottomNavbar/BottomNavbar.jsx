@@ -8,6 +8,7 @@ import { useUser } from "../../provider/UserProvider";
 import Profile from "../Profile/Profile";
 import "./BottomNavbar.css";
 import { useWishList } from "../../provider/WishListProvider";
+import { toast } from "react-toastify";
 
 export default function BottomNavbar({ handleCategory }) {
   const { isUserLoggedIn } = useUser();
@@ -36,7 +37,7 @@ export default function BottomNavbar({ handleCategory }) {
   useEffect(() => {
     getCategoryList();
   }, [wishListNumber]);
-  console.log("currentGender", currentGender);
+
   return (
     <div className="bottom-navbar">
       <div className="bottom-navbar-left">
@@ -71,7 +72,14 @@ export default function BottomNavbar({ handleCategory }) {
         <Profile />
         <NavLink to={isUserLoggedIn ? "/wishlist" : "/sign-in"}>
           <div className="bottom-navbar-wishlist">
-            <FaHeart size={20} color="#58595b" />
+            <FaHeart
+              size={20}
+              color="#58595b"
+              onClick={() => {
+                !isUserLoggedIn &&
+                  toast("Sign in / Register to handle wishlist!");
+              }}
+            />
             <span>{wishListNumber}</span>
           </div>
         </NavLink>

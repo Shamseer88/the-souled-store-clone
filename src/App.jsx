@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import Men from "./pages/Men/Men";
 import Women from "./pages/Women/Women";
 import Cart from "./pages/Cart/Cart";
@@ -13,10 +13,9 @@ import MenCategory from "./pages/Category/MenCategory";
 import WomenCategory from "./pages/Category/WomenCategory";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useUser } from "./provider/UserProvider";
 
 export default function App() {
-  const currentUrl = useLocation();
-  console.log("currentURL", currentUrl.pathname);
   return (
     <div>
       <TopNavbar />

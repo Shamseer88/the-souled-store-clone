@@ -4,7 +4,6 @@ import { projectId, apiUrl } from "../../helper/apiDetails";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCartContext } from "../../provider/CartProvider";
-import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
 import Stars from "../../components/Stars/Stars";
 import AddToCart from "../../components/AddToCart/AddToCart";
 import { useWishList } from "../../provider/WishListProvider";
@@ -42,7 +41,6 @@ export default function SingleProduct() {
   } = product;
   return (
     <>
-      <BottomNavbar />
       <div className="single-product-container">
         <div className="single-product-left">
           <div className="image-grid">

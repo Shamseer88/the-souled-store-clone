@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useWishList } from "../../provider/WishListProvider";
 import { FaShoppingCart, FaTrash } from "react-icons/fa";
 import "./WishList.css";
@@ -26,7 +26,6 @@ export default function Wishlist() {
   }, [wishList]);
   return (
     <>
-      <BottomNavbar />
       <h3 className="wishlist-h3">
         {wishList
           ? `${formatUserName(loginUserName)}'s Wishlist`

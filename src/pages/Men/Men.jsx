@@ -8,6 +8,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
 import { useSearch } from "../../provider/SearchProvider";
 import NoProductMessage from "../../components/NoProductMessage/NoProductMessage";
+import { useUser } from "../../provider/UserProvider";
 
 export default function Men() {
   const { searchTerm } = useSearch();

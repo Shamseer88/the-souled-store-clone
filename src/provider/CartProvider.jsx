@@ -41,12 +41,11 @@ const CartProvider = ({ children }) => {
           size: size,
         }),
       });
-      const updatedCartData = await response.json();
-      setCartData(updatedCartData);
       if (response.ok) {
-        return toast("Added to cart");
+        toast("Product added to cart successfully!");
+      } else {
+        toast("Product adding to cart failed!");
       }
-      console.log("Updated cart", updatedCartData);
     } catch (error) {
       console.log("Error adding product into cart", error);
     }

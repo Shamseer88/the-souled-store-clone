@@ -11,11 +11,9 @@ import { useWishList } from "../../provider/WishListProvider";
 export default function SingleProduct() {
   const { cartData, addToCart } = useCartContext();
   const { addToWishList, wishList } = useWishList();
-  // console.log("wishList", wishList);
   const [product, setProduct] = useState([]);
   const [mainImage, setMainImage] = useState(0);
   const { id } = useParams();
-  console.log(id);
   const getProduct = async () => {
     const response = await fetch(`${apiUrl}ecommerce/product/${id}`, {
       headers: {
@@ -24,7 +22,6 @@ export default function SingleProduct() {
     });
     const jsonData = await response.json();
     setProduct(jsonData.data);
-    console.log(product);
   };
   useEffect(() => {
     getProduct();

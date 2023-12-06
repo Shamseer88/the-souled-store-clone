@@ -5,26 +5,32 @@ import { NavLink } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 
 export default function Cart() {
-  const { cartData, cartTotal, getCartData } = useCartContext();
+  const {
+    cartData,
+    cartTotal,
+    getCartData,
+    deleteAnItemFromCart,
+    deleteAllItemsFromCart,
+  } = useCartContext();
   useEffect(() => {
     getCartData();
   }, []);
-  useEffect(() => {
-    console.log("Updated Cart Total", cartTotal);
-  }, [cartTotal]);
+
   return (
     <>
       <h3 className="cart-page-h3">Cart Details</h3>
       <div className="cart-item-div">
         {cartData &&
           cartData.map((cartItem) => (
-            <div key={cartItem._id} className="cart-item-card">
+            <div key={cartItem.product._id} className="cart-item-card">
               <div className="cart-item-details">
                 <div className="cart-item-img">
-                  <img
-                    src={cartItem.product.displayImage}
-                    alt={cartItem.product.name}
-                  />
+                  <NavLink to={`/single-product/${cartItem.product._id}`}>
+                    <img
+                      src={cartItem.product.displayImage}
+                      alt={cartItem.product.name}
+                    />
+                  </NavLink>
                 </div>
                 <div className="cart-item-info">
                   <p className="cart-item-info-name">{cartItem.product.name}</p>
@@ -40,7 +46,10 @@ export default function Cart() {
               <div className="cart-item-total">
                 <p>Total : ₹{cartItem.product.price * cartItem.quantity}</p>
               </div>
-              <button className="cart-item-delete-btn">
+              <button
+                className="cart-item-delete-btn"
+                onClick={() => deleteAnItemFromCart(cartItem.product._id)}
+              >
                 <FaTrash size={18} />
               </button>
             </div>
@@ -48,9 +57,19 @@ export default function Cart() {
       </div>
       <div className="cart-total-div">
         <h4>Grand Total : ₹{cartTotal}</h4>
-        <NavLink to="/men">
-          <button>Continue Shopping</button>
-        </NavLink>
+        <div className="cart-totat-buttons-div">
+          <NavLink to="/men">
+            <button>Continue Shopping</button>
+          </NavLink>
+          <button
+            className="cart-totat-buttons-clear"
+            onClick={() => {
+              deleteAllItemsFromCart();
+            }}
+          >
+            Clear cart
+          </button>
+        </div>
       </div>
     </>
   );

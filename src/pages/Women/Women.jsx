@@ -6,13 +6,16 @@ import Loader from "../../components/Loader/Loader";
 import ProductContainer from "../../components/ProductContainer/ProductContainer";
 import Pagination from "../../components/Pagination/Pagination";
 import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
+import { useSearch } from "../../provider/SearchProvider";
 
 export default function Women() {
+  const { searchTerm } = useSearch();
   const [isLoading, setIsLoading] = useState(false);
   const [newArrivalProducts, setNewArrivalProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [goToPage, setGoToPage] = useState(0);
+  const [subCategory, setSubCategory] = useState("");
 
   const getProducts = async () => {
     try {
@@ -27,7 +30,6 @@ export default function Women() {
       );
       const jsonData = await response.json();
       setProducts(jsonData.data);
-      console.log("Products-", products);
     } catch (error) {
       console.log(error);
     } finally {
@@ -46,7 +48,27 @@ export default function Women() {
     );
     const jsonData = await response.json();
     setNewArrivalProducts(jsonData.data);
-    console.log(newArrivalProducts);
+  };
+
+  // Filter by search
+  const getProductsBySearch = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(
+        `${apiUrl}ecommerce/clothes/products?search={"name":"${searchTerm}"}&filter={"gender":"Women"}&page=${currentPage}`,
+        {
+          headers: {
+            projectId: projectId,
+          },
+        }
+      );
+      const jsonData = await response.json();
+      setProducts(jsonData.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // Pagination Starts
@@ -80,13 +102,14 @@ export default function Women() {
   useEffect(() => {
     getNewArrivalProducts();
   }, []);
+
   useEffect(() => {
     getProducts();
   }, [currentPage]);
 
   useEffect(() => {
-    getNewArrivalProducts();
-  }, []);
+    getProductsBySearch();
+  }, [searchTerm]);
   return (
     <div>
       <BottomNavbar />
@@ -97,22 +120,23 @@ export default function Women() {
         <NewArrival newArrivalProducts={newArrivalProducts} />
       )}
       <h3>ALL PRODUCTS</h3>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
+
+      <>
+        {!products ? (
+          <NoProductMessage />
+        ) : (
           <ProductContainer products={products} />
-          <Pagination
-            currentPage={currentPage}
-            handleNext={handleNext}
-            handlePrevious={handlePrevious}
-            handleGoChange={(e) => setGoToPage(e.target.value)}
-            handleGoClick={handleGoClick}
-            gotoPageValue={Number(goToPage)}
-            handleSubmit={handleGotoPageForm}
-          />
-        </>
-      )}
+        )}
+        <Pagination
+          currentPage={currentPage}
+          handleNext={handleNext}
+          handlePrevious={handlePrevious}
+          handleGoChange={(e) => setGoToPage(e.target.value)}
+          handleGoClick={handleGoClick}
+          gotoPageValue={Number(goToPage)}
+          handleSubmit={handleGotoPageForm}
+        />
+      </>
     </div>
   );
 }

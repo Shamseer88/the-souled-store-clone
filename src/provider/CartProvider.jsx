@@ -6,7 +6,6 @@ const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const authToken = sessionStorage.getItem("authToken");
-  if (authToken) console.log("Token:", authToken);
   const [cartData, setCartData] = useState(null);
   const [cartNumber, setCartNumber] = useState(0);
   const [cartTotal, setCartTotal] = useState(0);
@@ -24,7 +23,6 @@ const CartProvider = ({ children }) => {
       setCartData(data.data.items);
       setCartNumber(data.results);
       setCartTotal(data.data.totalPrice);
-      console.log(("Cart Total", cartTotal));
     } catch (error) {
       console.log("Error fetching cart", error);
     }
@@ -55,12 +53,54 @@ const CartProvider = ({ children }) => {
     }
   };
 
+  // Delete an item from cart
+  const deleteAnItemFromCart = async (id) => {
+    try {
+      const response = await fetch(`${apiUrl}ecommerce/cart/${id}`, {
+        method: "DELETE",
+        headers: {
+          projectID: projectId,
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+      if (response.ok) {
+        toast("Product deleted successfully!");
+      } else {
+        toast("Failed to delete the product!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Clear cart
+  const deleteAllItemsFromCart = async () => {
+    try {
+      const response = await fetch(`${apiUrl}ecommerce/cart/`, {
+        method: "DELETE",
+        headers: {
+          projectID: projectId,
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+      if (response.ok) {
+        toast("Wishlist is cleared!");
+      } else {
+        toast("Failed to clear the wishlist!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const contextValue = {
     cartNumber,
     cartData,
     cartTotal,
     addToCart,
     getCartData,
+    deleteAnItemFromCart,
+    deleteAllItemsFromCart,
   };
 
   return (

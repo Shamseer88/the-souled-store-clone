@@ -37,7 +37,6 @@ export default function Men() {
       );
       const jsonData = await response.json();
       setProducts(jsonData.data);
-      console.log("Products-", products);
     } catch (error) {
       console.log(error);
     } finally {
@@ -59,7 +58,6 @@ export default function Men() {
       const jsonData = await response.json();
       setIsLoading(false);
       setNewArrivalProducts(jsonData.data);
-      console.log(newArrivalProducts);
     } catch (error) {
       console.log(error);
     }
@@ -70,7 +68,7 @@ export default function Men() {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `${apiUrl}ecommerce/clothes/products?search={"name":"${searchTerm}"}&page=${currentPage}`,
+        `${apiUrl}ecommerce/clothes/products?search={"name":"${searchTerm}"}&filter={"gender":"Men"}&page=${currentPage}`,
         {
           headers: {
             projectId: projectId,
@@ -79,7 +77,6 @@ export default function Men() {
       );
       const jsonData = await response.json();
       setProducts(jsonData.data);
-      console.log("Products-", products);
     } catch (error) {
       console.log(error);
     } finally {

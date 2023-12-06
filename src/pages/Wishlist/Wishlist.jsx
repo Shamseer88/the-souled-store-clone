@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useWishList } from "../../provider/WishListProvider";
 import { FaShoppingCart, FaTrash } from "react-icons/fa";
 import "./WishList.css";
-import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
 import { NavLink } from "react-router-dom";
 
 export default function Wishlist() {
@@ -20,7 +19,6 @@ export default function Wishlist() {
       sanitizedUserName.charAt(0).toUpperCase() + sanitizedUserName.slice(1);
     return formattedUserName;
   };
-  console.log("WishList from context", wishList);
   useEffect(() => {
     getWishListItems();
   }, [wishList]);

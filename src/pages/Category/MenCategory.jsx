@@ -6,8 +6,11 @@ import Pagination from "../../components/Pagination/Pagination";
 import { apiUrl, projectId } from "../../helper/apiDetails";
 import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
 import ProductContainer from "../../components/ProductContainer/ProductContainer";
+import { useSearch } from "../../provider/SearchProvider";
+import NoProductMessage from "../../components/NoProductMessage/NoProductMessage";
 
 export default function MenCategory() {
+  const { searchTerm } = useSearch();
   const { category } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
@@ -34,7 +37,6 @@ export default function MenCategory() {
       );
       const jsonData = await response.json();
       setProducts(jsonData.data);
-      console.log("Products-", products);
     } catch (error) {
       console.log(error);
     } finally {
@@ -55,7 +57,26 @@ export default function MenCategory() {
       );
       const jsonData = await response.json();
       setProducts(jsonData.data);
-      console.log("Products-", products);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getProductsBySearch = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(
+        `${apiUrl}ecommerce/clothes/products?search={"name":"${searchTerm}"}&filter={"gender":"Men","subCategory": "${category}"}&page=${currentPage}`,
+        {
+          headers: {
+            projectId: projectId,
+          },
+        }
+      );
+      const jsonData = await response.json();
+      setProducts(jsonData.data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -94,28 +115,32 @@ export default function MenCategory() {
     getProductsByCategory();
   }, [currentPage, category]);
 
+  useEffect(() => {
+    getProductsBySearch();
+  }, [searchTerm]);
+
   return (
     <div>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <BottomNavbar handleCategory={handleCategory} />
+      <>
+        <BottomNavbar handleCategory={handleCategory} />
+        {products ? (
           <ProductContainer
             products={products}
             getProductByBrand={getProductByBrand}
           />
-          <Pagination
-            currentPage={currentPage}
-            handleNext={handleNext}
-            handlePrevious={handlePrevious}
-            handleGoChange={(e) => setGoToPage(e.target.value)}
-            handleGoClick={handleGoClick}
-            gotoPageValue={Number(goToPage)}
-            handleSubmit={handleGotoPageForm}
-          />
-        </>
-      )}
+        ) : (
+          <NoProductMessage />
+        )}
+        <Pagination
+          currentPage={currentPage}
+          handleNext={handleNext}
+          handlePrevious={handlePrevious}
+          handleGoChange={(e) => setGoToPage(e.target.value)}
+          handleGoClick={handleGoClick}
+          gotoPageValue={Number(goToPage)}
+          handleSubmit={handleGotoPageForm}
+        />
+      </>
     </div>
   );
 }

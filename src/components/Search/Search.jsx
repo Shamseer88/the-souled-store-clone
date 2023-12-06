@@ -5,7 +5,6 @@ import { useSearch } from "../../provider/SearchProvider";
 export default function Search() {
   const { searchTerm, handleSearch } = useSearch();
 
-  console.log(searchTerm);
   return (
     <div className="serach-bar">
       <input

@@ -8,7 +8,6 @@ export const WishListProvider = ({ children }) => {
   const [wishList, setWishList] = useState([]);
   const [wishListNumber, setWishListNumber] = useState(0);
   const bearerToken = sessionStorage.getItem("authToken");
-  console.log("bearer", bearerToken);
 
   const deleteAnItemFromWishList = async (id) => {
     try {
@@ -87,14 +86,12 @@ export const WishListProvider = ({ children }) => {
     }
   };
 
-  const removeFromWishList = () => {};
   return (
     <WishListContext.Provider
       value={{
         wishListNumber,
         wishList,
         addToWishList,
-        removeFromWishList,
         getWishListItems,
         deleteAnItemFromWishList,
         deleteAllItemsFromWishList,

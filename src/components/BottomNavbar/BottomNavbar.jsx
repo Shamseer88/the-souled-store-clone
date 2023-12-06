@@ -18,7 +18,6 @@ export default function BottomNavbar({ handleCategory }) {
 
   const navigate = useNavigate();
   const currentLocation = useLocation().pathname;
-  console.log("currentLocation", currentLocation);
 
   const currentGender = "/" + currentLocation.split("/")[1];
 

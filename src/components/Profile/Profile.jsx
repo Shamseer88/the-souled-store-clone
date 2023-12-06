@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 export default function Profile() {
   const navigate = useNavigate();
   const { signInContext, isUserLoggedIn } = useUser();
-  // let loginUserName = localStorage.getItem("userInfo");
   const loginUserName = JSON.parse(localStorage.getItem("userInfo")) || "";
 
   const formatUserName = (userName) => {

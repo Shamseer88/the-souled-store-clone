@@ -13,15 +13,12 @@ import MenCategory from "./pages/Category/MenCategory";
 import WomenCategory from "./pages/Category/WomenCategory";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useUser } from "./provider/UserProvider";
 
 export default function App() {
   return (
     <div>
       <TopNavbar />
-
       <ToastContainer />
-
       <Routes>
         <Route path="/" element={<Men />} />
         <Route path="/men" element={<Men />} />

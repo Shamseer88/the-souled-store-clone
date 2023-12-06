@@ -9,10 +9,12 @@ import Profile from "../Profile/Profile";
 import "./BottomNavbar.css";
 import { useWishList } from "../../provider/WishListProvider";
 import { toast } from "react-toastify";
+import { useCartContext } from "../../provider/CartProvider";
 
 export default function BottomNavbar({ handleCategory }) {
   const { isUserLoggedIn } = useUser();
   const { wishListNumber } = useWishList();
+  const { cartNumber } = useCartContext();
 
   const navigate = useNavigate();
   const currentLocation = useLocation().pathname;
@@ -86,7 +88,7 @@ export default function BottomNavbar({ handleCategory }) {
         <NavLink to={isUserLoggedIn ? "/cart" : "/sign-in"}>
           <div className="bottom-navbar-cart">
             <FaShoppingBag size={20} color="#58595b" />
-            <span>0</span>
+            <span>{cartNumber}</span>
           </div>
         </NavLink>
       </div>

@@ -8,6 +8,8 @@ const CartProvider = ({ children }) => {
   const authToken = sessionStorage.getItem("authToken");
   if (authToken) console.log("Token:", authToken);
   const [cartData, setCartData] = useState(null);
+  const [cartNumber, setCartNumber] = useState(0);
+  const [cartTotal, setCartTotal] = useState(0);
 
   // Fetch initial cart data
   const getCartData = async () => {
@@ -19,8 +21,10 @@ const CartProvider = ({ children }) => {
         },
       });
       const data = await response.json();
-      setCartData(data);
-      console.log("Initial cart data", cartData);
+      setCartData(data.data.items);
+      setCartNumber(data.results);
+      setCartTotal(data.data.totalPrice);
+      console.log(("Cart Total", cartTotal));
     } catch (error) {
       console.log("Error fetching cart", error);
     }
@@ -51,11 +55,13 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    getCartData();
-  }, []);
-
-  const contextValue = { cartData, addToCart };
+  const contextValue = {
+    cartNumber,
+    cartData,
+    cartTotal,
+    addToCart,
+    getCartData,
+  };
 
   return (
     <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>

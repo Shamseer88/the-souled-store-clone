@@ -1,0 +1,43 @@
+.categories-banner {
+  padding: 3rem 0;
+}
+.categories-banner h3 {
+  text-transform: uppercase;
+}
+
+.categories-images {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 90%;
+  margin: auto;
+  gap: 2rem;
+}
+
+.categories-shirt img {
+  width: 100%;
+}
+
+.categories-banner-name {
+  text-align: center;
+  margin-top: -3rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 1024px) {
+  .categories-images {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (max-width: 700px) {
+  .categories-images {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .categories-banner-name {
+    font-size: 1rem;
+    margin-top: -1.5rem;
+  }
+  .categories-images {
+    gap: 1rem;
+  }
+}

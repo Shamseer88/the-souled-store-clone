@@ -6,7 +6,7 @@ import "../MenSlide/MenSlide.css";
 export default function WomenSlide() {
   return (
     <div className="carousal-div">
-      <Carousel showThumbs={false} showStatus={false}>
+      <Carousel showThumbs={false} showStatus={false} autoPlay={true}>
         {slideImages.map((slide) => (
           <img key={slide.id} src={slide.img} />
         ))}

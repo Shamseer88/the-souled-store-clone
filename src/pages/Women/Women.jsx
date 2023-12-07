@@ -7,6 +7,7 @@ import ProductContainer from "../../components/ProductContainer/ProductContainer
 import Pagination from "../../components/Pagination/Pagination";
 import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
 import { useSearch } from "../../provider/SearchProvider";
+import CategoriesBannerWomen from "../../components/CategoriesBanner/CategoriesBannerWomen";
 
 export default function Women() {
   const { searchTerm } = useSearch();
@@ -114,6 +115,7 @@ export default function Women() {
     <div>
       <BottomNavbar />
       <WomenSlide />
+      <CategoriesBannerWomen />
       {isLoading ? (
         <Loader />
       ) : (

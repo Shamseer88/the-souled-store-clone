@@ -13,6 +13,7 @@ export default function SignIn() {
     email: "",
     password: "",
   });
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setUserInfo({ ...userInfo, [name]: value });

@@ -9,6 +9,7 @@ import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
 import { useSearch } from "../../provider/SearchProvider";
 import NoProductMessage from "../../components/NoProductMessage/NoProductMessage";
 import { useUser } from "../../provider/UserProvider";
+import CategoriesBanner from "../../components/CategoriesBanner/CategoriesBanner";
 
 export default function Men() {
   const { searchTerm } = useSearch();
@@ -128,6 +129,7 @@ export default function Men() {
     <div>
       <BottomNavbar handleCategory={handleCategory} />
       <MenSlide />
+      <CategoriesBanner />
       {isLoading ? (
         <Loader />
       ) : (
